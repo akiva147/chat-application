@@ -1,4 +1,4 @@
-import classes from './enter-username.module.scss'
+import classes from './login-page.module.scss'
 
 export interface EnterUsernameProps {
     username: string
@@ -6,7 +6,7 @@ export interface EnterUsernameProps {
     handleConnection: () => void
 }
 
-export const EnterUsername = ({
+export const LoginPage = ({
     username,
     setUsername,
     handleConnection,

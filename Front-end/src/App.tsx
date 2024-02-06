@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import io, { Socket } from 'socket.io-client'
-import { EnterUsername } from './components/EnterUsername'
+import { LoginPage } from './pages/LoginPage'
 import { TMessage, TUser } from './types/general.types'
 import { ConnectedUsers } from './components/ConnectedUsers'
 import { Messages } from './components/Messages'
+import { ChatPage } from './pages/ChatPage'
 
 const App = () => {
     const [connectedUsers, setConnectedUsers] = useState(
@@ -68,26 +69,21 @@ const App = () => {
 
     return (
         <div className="app">
-            {!connected && (
-                <EnterUsername
+            {!connected ? (
+                <LoginPage
                     handleConnection={handleConnection}
                     username={username}
                     setUsername={setUsername}
                 />
-            )}
-
-            {connected && (
-                <>
-                    <ConnectedUsers connectedUsers={connectedUsers} />
-
-                    <Messages
-                        handleSendMessage={handleSendMenssage}
-                        message={message}
-                        setMessage={setMessage}
-                        messages={messages}
-                        username={username}
-                    />
-                </>
+            ) : (
+                <ChatPage
+                    connectedUsers={connectedUsers}
+                    handleSendMessage={handleSendMenssage}
+                    message={message}
+                    setMessage={setMessage}
+                    messages={messages}
+                    username={username}
+                />
             )}
 
             <ToastContainer position="bottom-right" />
