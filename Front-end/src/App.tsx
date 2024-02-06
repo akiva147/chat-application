@@ -2,20 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import io, { Socket } from 'socket.io-client'
 import { LoginPage } from './pages/LoginPage'
-import { TMessage, TUser } from './types/general.types'
-import { ConnectedUsers } from './components/ConnectedUsers'
-import { Messages } from './components/Messages'
 import { ChatPage } from './pages/ChatPage'
+import { TMessage, TUser } from './types/general.types'
 
 const App = () => {
-    const [connectedUsers, setConnectedUsers] = useState(
-        [] as { id: string; username: string }[]
-    )
+    const [connectedUsers, setConnectedUsers] = useState<TUser[]>([])
     const [username, setUsername] = useState('')
+    const [room, setRoom] = useState('1')
     const [connected, setConnected] = useState(false)
-    const [messages, setMessages] = useState(
-        [] as { message: string; username: string }[]
-    )
+    const [messages, setMessages] = useState<TMessage[]>([])
     const [message, setMessage] = useState('')
 
     const socketClient = useRef<Socket>()
@@ -55,15 +50,21 @@ const App = () => {
 
     const handleConnection = () => {
         if (socketClient.current) {
-            socketClient.current.emit('handle-connection', username)
+            socketClient.current.emit('handle-connection', username, room)
         }
     }
 
     const handleSendMenssage = () => {
         if (socketClient.current) {
             setMessages((prev) => [...prev, { message, username }])
-            socketClient.current.emit('message', { message, username })
+            socketClient.current.emit('message', { message, username }, room)
             setMessage('')
+        }
+    }
+
+    const joinRoom = () => {
+        if (socketClient.current) {
+            socketClient.current.emit('join-room', room)
         }
     }
 
@@ -83,6 +84,9 @@ const App = () => {
                     setMessage={setMessage}
                     messages={messages}
                     username={username}
+                    room={room}
+                    setRoom={setRoom}
+                    handleJoinRoom={joinRoom}
                 />
             )}
 

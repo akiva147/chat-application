@@ -107,7 +107,9 @@ ul {
 // Messages Styles
 
 .messages {
-    width: calc(100vw - 300px);
+    display: flex;
+    align-items: end;
+    // width: calc(100vw - 300px);
 
     .message-list {
         height: calc(100vh - 45px);

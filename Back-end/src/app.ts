@@ -14,19 +14,23 @@ const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "http://localhost:5173" } });
 
 io.on("connection", (socket) => {
-  socket.join("myChat");
+  socket.join("1");
 
-  socket.on("handle-connection", (username: string) => {
+  socket.on("join-room", (room) => {
+    socket.join(room);
+  });
+
+  socket.on("handle-connection", (username: string, room: string) => {
     if (!userJoin(socket.id, username)) {
       socket.emit("username-taken");
     } else {
       socket.emit("username-submitted-successfully");
-      io.to("myChat").emit("get-connected-users", getUsers());
+      io.to(room).emit("get-connected-users", getUsers());
     }
   });
 
-  socket.on("message", (message: Message) => {
-    socket.broadcast.to("myChat").emit("receive-message", message);
+  socket.on("message", (message: Message, room: string) => {
+    socket.to(room).emit("receive-message", message);
   });
 
   socket.on("disconnect", () => {
