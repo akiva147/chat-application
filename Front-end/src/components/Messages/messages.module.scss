@@ -1,0 +1,91 @@
+@import '../../App.module';
+
+.messages {
+    width: calc(100vw - 300px);
+
+    & > .message-list {
+        height: calc(100vh - 45px);
+        padding: 20px;
+        overflow-y: auto;
+
+        & > .message {
+            font-weight: 300;
+            width: fit-content;
+            max-width: 70%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-family: $roboto;
+            padding: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.sended {
+                background: $primary-color;
+                color: white;
+                margin-left: auto;
+            }
+
+            &.received {
+                background: $secondary-color;
+                color: #333;
+
+                time {
+                    color: #666 !important;
+                }
+            }
+
+            .message-info {
+                margin-bottom: 3px;
+
+                span,
+                time {
+                    font-size: 0.8rem;
+                }
+
+                span {
+                    color: orange;
+                }
+
+                time {
+                    color: #ddd;
+                }
+            }
+        }
+    }
+
+    & > form {
+        height: 45px;
+
+        input {
+            font-family: $roboto;
+            display: inline-block;
+            height: 100%;
+            width: 85%;
+            color: #333;
+            padding: 5px 10px;
+            font-size: 1.1rem;
+
+            &::placeholder {
+                font-size: 0.95rem;
+                color: #ccc;
+            }
+        }
+
+        button {
+            font-family: $roboto;
+            display: inline-block;
+            height: 100%;
+            width: 15%;
+            background: $primary-color;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 300;
+
+            &:hover {
+                background: $lighter-blue-color;
+            }
+        }
+    }
+}

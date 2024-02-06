@@ -1,0 +1,47 @@
+@import '../../App.module';
+
+.message {
+    font-weight: 300;
+    width: fit-content;
+    max-width: 70%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: $roboto;
+    padding: 10px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.sended {
+        background: $primary-color;
+        color: white;
+        margin-left: auto;
+    }
+
+    &.received {
+        background: $secondary-color;
+        color: #333;
+
+        time {
+            color: #666 !important;
+        }
+    }
+
+    .message-info {
+        margin-bottom: 3px;
+
+        span,
+        time {
+            font-size: 0.8rem;
+        }
+
+        span {
+            color: orange;
+        }
+
+        time {
+            color: #ddd;
+        }
+    }
+}

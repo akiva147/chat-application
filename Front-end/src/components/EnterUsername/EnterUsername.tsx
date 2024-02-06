@@ -17,7 +17,7 @@ export const EnterUsername = ({
                 e.preventDefault()
                 handleConnection()
             }}
-            className="enter-username-form"
+            className={classes['enter-username-form']}
         >
             <input
                 type="text"

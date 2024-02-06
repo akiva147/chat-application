@@ -5,6 +5,7 @@ import { EnterUsername } from './components/EnterUsername'
 import { TMessage, TUser } from './types/general.types'
 import { ConnectedUsers } from './components/ConnectedUsers'
 import { Messages } from './components/Messages'
+import classes from './App.module.scss'
 
 const App = () => {
     const [connectedUsers, setConnectedUsers] = useState(
@@ -67,7 +68,7 @@ const App = () => {
     }
 
     return (
-        <div className="app">
+        <div className={classes.app}>
             {!connected && (
                 <EnterUsername
                     handleConnection={handleConnection}

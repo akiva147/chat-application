@@ -1,6 +1,7 @@
 import { TMessage } from 'src/types/general.types'
 import classes from './messages.module.scss'
 import { Message } from '../Message/Message'
+import classNames from 'classnames'
 
 export interface MessagesProps {
     messages: TMessage[]
@@ -18,8 +19,13 @@ export const Messages = ({
     message,
 }: MessagesProps) => {
     return (
-        <div className="messages">
-            <ul className="message-list scrollable">
+        <div className={classes.messages}>
+            <ul
+                className={classNames([
+                    classes['message-list'],
+                    classes.scrollable,
+                ])}
+            >
                 {messages.map((message, i) => (
                     <Message
                         key={i + message.username}

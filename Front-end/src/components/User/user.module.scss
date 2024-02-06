@@ -1,0 +1,26 @@
+@import '../../App.module';
+
+.connected-user {
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    background: $lighter-blue-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    span {
+        font-size: 1rem;
+    }
+}

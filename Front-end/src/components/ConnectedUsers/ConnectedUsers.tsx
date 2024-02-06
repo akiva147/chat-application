@@ -8,7 +8,7 @@ export interface ConnectedUsersProps {
 
 export const ConnectedUsers = ({ connectedUsers }: ConnectedUsersProps) => {
     return (
-        <div className="connected-users">
+        <div className={classes['connected-users']}>
             <h2>Connected Users</h2>
 
             <ul>
