@@ -8,8 +8,11 @@ export interface ChatPageProps {
     messages: TMessage[]
     username: string
     handleSendMessage: () => void
-    setMessage: (value: string) => void
+    setMessage: React.Dispatch<React.SetStateAction<string>>
     message: string
+    room: string
+    setRoom: React.Dispatch<React.SetStateAction<string>>
+    handleJoinRoom: () => void
 }
 
 export const ChatPage = ({
@@ -19,6 +22,9 @@ export const ChatPage = ({
     messages,
     setMessage,
     username,
+    room,
+    setRoom,
+    handleJoinRoom,
 }: ChatPageProps) => {
     return (
         <>
@@ -30,6 +36,9 @@ export const ChatPage = ({
                 setMessage={setMessage}
                 messages={messages}
                 username={username}
+                room={room}
+                setRoom={setRoom}
+                handleJoinRoom={handleJoinRoom}
             />
         </>
     )

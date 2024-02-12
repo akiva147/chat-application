@@ -6,8 +6,11 @@ export interface MessagesProps {
     messages: TMessage[]
     username: string
     handleSendMessage: () => void
-    setMessage: (value: string) => void
+    setMessage: React.Dispatch<React.SetStateAction<string>>
     message: string
+    room: string
+    setRoom: React.Dispatch<React.SetStateAction<string>>
+    handleJoinRoom: () => void
 }
 
 export const Messages = ({
@@ -16,6 +19,9 @@ export const Messages = ({
     handleSendMessage,
     setMessage,
     message,
+    room,
+    setRoom,
+    handleJoinRoom,
 }: MessagesProps) => {
     return (
         <div className="messages">
@@ -43,6 +49,21 @@ export const Messages = ({
                     required={true}
                 />
                 <button type="submit">Send</button>
+            </form>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    handleJoinRoom()
+                }}
+            >
+                <input
+                    type="text"
+                    placeholder="Join room..."
+                    value={room}
+                    onChange={(e) => setRoom(e.target.value)}
+                    required={true}
+                />
+                <button type="submit">Join</button>
             </form>
         </div>
     )
