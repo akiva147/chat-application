@@ -1,21 +1,21 @@
-import classes from './enter-username.module.scss'
+import classes from './login-page.module.scss'
 
 export interface EnterUsernameProps {
     username: string
     setUsername: React.Dispatch<React.SetStateAction<string>>
-    handleConnection: () => void
+    handleConnection: () => Promise<void>
 }
 
-export const EnterUsername = ({
+export const LoginPage = ({
     username,
     setUsername,
     handleConnection,
 }: EnterUsernameProps) => {
     return (
         <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
                 e.preventDefault()
-                handleConnection()
+                await handleConnection()
             }}
             className={classes['enter-username-form']}
         >
