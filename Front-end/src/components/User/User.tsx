@@ -1,5 +1,6 @@
 import { TUser } from 'src/types/general.types'
 import classes from './user.module.scss'
+import classNames from 'classnames'
 
 export interface UserProps {
     user: TUser
@@ -7,9 +8,9 @@ export interface UserProps {
 
 export const User = ({ user }: UserProps) => {
     return (
-        <li className="connected-user">
-            <img src="/assets/user.png" alt="Unknown User" />
+        <li className={classNames([classes['connected-user']])}>
             <span>{user.username}</span>
+            <span className={classes.dot}>•</span>
         </li>
     )
 }

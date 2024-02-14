@@ -1,6 +1,7 @@
 import { TMessage } from 'src/types/general.types'
 import classes from './message.module.scss'
 import dayjs from 'dayjs'
+import classNames from 'classnames'
 
 export interface MessageProps {
     message: TMessage
@@ -8,16 +9,16 @@ export interface MessageProps {
 }
 
 export const Message = ({ message, username }: MessageProps) => {
-    const messageReceived = message.username !== username
+    const messageType = message.room
+        ? 'joined-room'
+        : message.username !== username
+        ? 'received'
+        : 'sended'
 
     return (
-        <li className={messageReceived ? 'message received' : 'message sended'}>
-            <div className="message-info">
-                <span>{message.username} </span>
-                <span>{dayjs().format('MM/DD/YYYY h:mm:ss').toString()}</span>
-            </div>
-
+        <li className={classes[messageType]}>
             <p>{message.message}</p>
+            {messageType !== 'joined-room' && <span>{message.username} </span>}
         </li>
     )
 }

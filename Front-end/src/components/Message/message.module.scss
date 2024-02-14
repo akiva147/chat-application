@@ -1,0 +1,38 @@
+@import '../../styles/colors.module.scss';
+
+li {
+    display: flex;
+    gap: 1rem;
+    font-weight: 300;
+    width: fit-content;
+    height: fit-content;
+    max-height: fit-content;
+    & > p {
+        background-color: $lighter-blue-color;
+        margin: 0;
+        border-radius: 1rem;
+        padding: {
+            block: 0.5rem;
+            inline: 1rem;
+        }
+    }
+    & > span {
+        padding-block: 0.5rem;
+    }
+    &.received {
+        p {
+            background-color: $light-blue-color;
+        }
+        flex-direction: row-reverse;
+        justify-self: end;
+        align-self: end;
+    }
+    &.joined-room {
+        border-radius: 1rem;
+        background-color: $notification-color;
+        & > * {
+            background-color: $notification-color;
+        }
+        align-self: center;
+    }
+}

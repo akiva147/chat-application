@@ -4,6 +4,9 @@ import io, { Socket } from 'socket.io-client'
 import { LoginPage } from './pages/LoginPage'
 import { ChatPage } from './pages/ChatPage'
 import { TMessage, TUser } from './types/general.types'
+import { ConnectedUsers } from './components/ConnectedUsers'
+import { Messages } from './components/Messages'
+import './App.css'
 
 const App = () => {
     const [connectedUsers, setConnectedUsers] = useState<TUser[]>([])
@@ -39,18 +42,21 @@ const App = () => {
             }
         )
 
-        socket.on(
-            'receive-message',
-            (message: { message: string; username: string }) => {
-                setMessages((prev) => [...prev, message])
-            }
-        )
+        socket.on('receive-message', (message: TMessage) => {
+            setMessages((prev) => [...prev, message])
+        })
+        socket.on('join-roon', (room: string) => {
+            setMessages((prev) => [
+                ...prev,
+                { message: `you are now in room ${room}`, username, room },
+            ])
+        })
 
         return () => {
             socketClient.current?.disconnect()
             socketClient.current = undefined
         }
-    }, [username])
+    }, [username, socketClient])
 
     const handleConnection = async () => {
         if (socketClient.current) {
@@ -76,6 +82,10 @@ const App = () => {
 
     const joinRoom = async () => {
         if (socketClient.current) {
+            // setMessages((prev) => [
+            //     ...prev,
+            //     { message: `${username} joined room ${room}`, username, room },
+            // ])
             await socketClient.current.emitWithAck('join-room', room)
         }
     }

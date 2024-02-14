@@ -1,6 +1,9 @@
 import { TMessage } from 'src/types/general.types'
 import classes from './messages.module.scss'
 import { Message } from '../Message/Message'
+import classNames from 'classnames'
+import { Button, Input } from 'antd'
+import { LegacyRef, useEffect, useRef } from 'react'
 
 export interface MessagesProps {
     messages: TMessage[]
@@ -23,9 +26,21 @@ export const Messages = ({
     setRoom,
     handleJoinRoom,
 }: MessagesProps) => {
+    const messagesRef = useRef<HTMLUListElement>(null)
+
+    useEffect(() => {
+        messagesRef.current?.scrollTo({
+            top: messagesRef.current?.scrollHeight,
+            behavior: 'smooth',
+        })
+    }, [messages])
+
     return (
-        <div className="messages">
-            <ul className="message-list scrollable">
+        <div className={classes.messages}>
+            <ul
+                className={classNames([classes['message-list']])}
+                ref={messagesRef}
+            >
                 {messages.map((message, i) => (
                     <Message
                         key={i + message.username}
@@ -35,37 +50,41 @@ export const Messages = ({
                 ))}
             </ul>
 
-            <form
-                onSubmit={async (e) => {
-                    e.preventDefault()
-                    setMessage('')
-                    await handleSendMessage()
-                }}
-            >
-                <input
-                    type="text"
-                    placeholder="Type your message..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    required={true}
-                />
-                <button type="submit">Send</button>
-            </form>
-            <form
-                onSubmit={async (e) => {
-                    e.preventDefault()
-                    await handleJoinRoom()
-                }}
-            >
-                <input
-                    type="text"
-                    placeholder="Join room..."
-                    value={room}
-                    onChange={(e) => setRoom(e.target.value)}
-                    required={true}
-                />
-                <button type="submit">Join</button>
-            </form>
+            <div className={classes.forms}>
+                <form
+                    onSubmit={async (e) => {
+                        e.preventDefault()
+                        setMessage('')
+                        await handleSendMessage()
+                    }}
+                >
+                    <Input
+                        type="text"
+                        placeholder="Type your message..."
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        size="large"
+                        required
+                    />
+                    <Button htmlType="submit">Send</Button>
+                </form>
+                <form
+                    onSubmit={async (e) => {
+                        e.preventDefault()
+                        await handleJoinRoom()
+                    }}
+                >
+                    <Input
+                        type="text"
+                        placeholder="Join room..."
+                        value={room}
+                        size="large"
+                        onChange={(e) => setRoom(e.target.value)}
+                        required
+                    />
+                    <Button htmlType="submit">Join</Button>
+                </form>
+            </div>
         </div>
     )
 }

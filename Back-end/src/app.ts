@@ -23,6 +23,7 @@ io.on("connection", (socket) => {
 
   socket.on("join-room", (room) => {
     socket.join(room);
+    socket.emit("join-roon", room);
   });
 
   socket.on("handle-connection", (username: string, room: string) => {
