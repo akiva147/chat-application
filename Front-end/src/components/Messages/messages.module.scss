@@ -1,91 +1,44 @@
-@import '../../App.module';
+@import '../../styles/colors.module.scss';
 
 .messages {
-    width: calc(100vw - 300px);
+    display: flex;
+    flex-direction: column;
+    // justify-content: end;
+    align-items: end;
+    width: calc(100vw - 20%);
+    height: 100%;
+    .forms {
+        width: 100%;
+        display: flex;
+        gap: 0.5rem;
+        padding-inline: 0.2rem;
+        & > form {
+            display: flex;
+            width: 100%;
 
-    & > .message-list {
-        height: calc(100vh - 45px);
-        padding: 20px;
-        overflow-y: auto;
-
-        & > .message {
-            font-weight: 300;
-            width: fit-content;
-            max-width: 70%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-family: $roboto;
-            padding: 10px;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-
-            &.sended {
+            button {
+                height: 100%;
                 background: $primary-color;
                 color: white;
-                margin-left: auto;
-            }
+                font-size: 1.2rem;
+                font-weight: 300;
 
-            &.received {
-                background: $secondary-color;
-                color: #333;
-
-                time {
-                    color: #666 !important;
-                }
-            }
-
-            .message-info {
-                margin-bottom: 3px;
-
-                span,
-                time {
-                    font-size: 0.8rem;
-                }
-
-                span {
-                    color: orange;
-                }
-
-                time {
-                    color: #ddd;
+                &:hover {
+                    background: $lighter-blue-color;
                 }
             }
         }
     }
 
-    & > form {
-        height: 45px;
-
-        input {
-            font-family: $roboto;
-            display: inline-block;
-            height: 100%;
-            width: 85%;
-            color: #333;
-            padding: 5px 10px;
-            font-size: 1.1rem;
-
-            &::placeholder {
-                font-size: 0.95rem;
-                color: #ccc;
-            }
-        }
-
-        button {
-            font-family: $roboto;
-            display: inline-block;
-            height: 100%;
-            width: 15%;
-            background: $primary-color;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 300;
-
-            &:hover {
-                background: $lighter-blue-color;
-            }
-        }
+    & > .message-list {
+        height: 100%;
+        width: 100%;
+        padding: 2rem;
+        overflow-y: auto;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 0;
     }
 }

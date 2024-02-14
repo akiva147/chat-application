@@ -9,8 +9,8 @@ export interface UserProps {
 export const User = ({ user }: UserProps) => {
     return (
         <li className={classNames([classes['connected-user']])}>
-            <img src="/assets/user.png" alt="Unknown User" />
             <span>{user.username}</span>
+            <span className={classes.dot}>•</span>
         </li>
     )
 }

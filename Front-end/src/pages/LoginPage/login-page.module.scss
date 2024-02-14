@@ -1,0 +1,26 @@
+@import '../../styles/colors.module.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 20%;
+    gap: 1rem;
+    h2 {
+        margin: 0;
+    }
+
+    input {
+    }
+
+    button {
+        background: $primary-color;
+        color: white;
+
+        &:hover {
+            background: $lighter-blue-color;
+        }
+    }
+}

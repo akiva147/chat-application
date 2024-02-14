@@ -1,3 +1,4 @@
+import { Button, Input } from 'antd'
 import classes from './login-page.module.scss'
 
 export interface EnterUsernameProps {
@@ -17,16 +18,17 @@ export const LoginPage = ({
                 e.preventDefault()
                 await handleConnection()
             }}
-            className={classes['enter-username-form']}
+            className={classes['container']}
         >
-            <input
+            <h2>Let's chat</h2>
+            <Input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter your username..."
                 required
             />
-            <button type="submit">Submit</button>
+            <Button htmlType="submit">Submit</Button>
         </form>
     )
 }

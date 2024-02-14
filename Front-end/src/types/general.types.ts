@@ -6,4 +6,5 @@ export type TUser = {
 export type TMessage = {
     message: string
     username: string
+    room?: string
 }

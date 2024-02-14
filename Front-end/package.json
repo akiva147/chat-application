@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "agrippa": "^2.0.4",
-    "antd": "^5.13.3",
+    "antd": "^5.14.1",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
     "node-sass": "^9.0.0",

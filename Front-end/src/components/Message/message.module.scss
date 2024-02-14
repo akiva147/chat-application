@@ -1,47 +1,38 @@
-@import '../../App.module';
+@import '../../styles/colors.module.scss';
 
-.message {
+li {
+    display: flex;
+    gap: 1rem;
     font-weight: 300;
     width: fit-content;
-    max-width: 70%;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-family: $roboto;
-    padding: 10px;
-
-    &:last-child {
-        margin-bottom: 0;
+    height: fit-content;
+    max-height: fit-content;
+    & > p {
+        background-color: $lighter-blue-color;
+        margin: 0;
+        border-radius: 1rem;
+        padding: {
+            block: 0.5rem;
+            inline: 1rem;
+        }
     }
-
-    &.sended {
-        background: $primary-color;
-        color: white;
-        margin-left: auto;
+    & > span {
+        padding-block: 0.5rem;
     }
-
     &.received {
-        background: $secondary-color;
-        color: #333;
-
-        time {
-            color: #666 !important;
+        p {
+            background-color: $light-blue-color;
         }
+        flex-direction: row-reverse;
+        justify-self: end;
+        align-self: end;
     }
-
-    .message-info {
-        margin-bottom: 3px;
-
-        span,
-        time {
-            font-size: 0.8rem;
+    &.joined-room {
+        border-radius: 1rem;
+        background-color: $notification-color;
+        & > * {
+            background-color: $notification-color;
         }
-
-        span {
-            color: orange;
-        }
-
-        time {
-            color: #ddd;
-        }
+        align-self: center;
     }
 }

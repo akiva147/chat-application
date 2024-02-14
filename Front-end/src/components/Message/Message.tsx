@@ -9,22 +9,16 @@ export interface MessageProps {
 }
 
 export const Message = ({ message, username }: MessageProps) => {
-    const messageReceived = message.username !== username
+    const messageType = message.room
+        ? 'joined-room'
+        : message.username !== username
+        ? 'received'
+        : 'sended'
 
     return (
-        <li
-            className={
-                messageReceived
-                    ? classes['message received']
-                    : classes['message sended']
-            }
-        >
-            <div className={classes['message-info']}>
-                <span>{message.username} </span>
-                <span>{dayjs().format('MM/DD/YYYY h:mm:ss').toString()}</span>
-            </div>
-
+        <li className={classes[messageType]}>
             <p>{message.message}</p>
+            {messageType !== 'joined-room' && <span>{message.username} </span>}
         </li>
     )
 }
