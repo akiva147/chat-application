@@ -7,12 +7,12 @@ export interface ChatPageProps {
     connectedUsers: TUser[]
     messages: TMessage[]
     username: string
-    handleSendMessage: () => void
+    handleSendMessage: () => Promise<void>
     setMessage: React.Dispatch<React.SetStateAction<string>>
     message: string
     room: string
     setRoom: React.Dispatch<React.SetStateAction<string>>
-    handleJoinRoom: () => void
+    handleJoinRoom: () => Promise<void>
 }
 
 export const ChatPage = ({

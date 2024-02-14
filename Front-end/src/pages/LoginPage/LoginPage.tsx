@@ -3,7 +3,7 @@ import classes from './login-page.module.scss'
 export interface EnterUsernameProps {
     username: string
     setUsername: React.Dispatch<React.SetStateAction<string>>
-    handleConnection: () => void
+    handleConnection: () => Promise<void>
 }
 
 export const LoginPage = ({
@@ -13,9 +13,9 @@ export const LoginPage = ({
 }: EnterUsernameProps) => {
     return (
         <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
                 e.preventDefault()
-                handleConnection()
+                await handleConnection()
             }}
             className="enter-username-form"
         >

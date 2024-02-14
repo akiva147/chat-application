@@ -5,12 +5,12 @@ import { Message } from '../Message/Message'
 export interface MessagesProps {
     messages: TMessage[]
     username: string
-    handleSendMessage: () => void
+    handleSendMessage: () => Promise<void>
     setMessage: React.Dispatch<React.SetStateAction<string>>
     message: string
     room: string
     setRoom: React.Dispatch<React.SetStateAction<string>>
-    handleJoinRoom: () => void
+    handleJoinRoom: () => Promise<void>
 }
 
 export const Messages = ({
@@ -36,9 +36,10 @@ export const Messages = ({
             </ul>
 
             <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                     e.preventDefault()
-                    handleSendMessage()
+                    setMessage('')
+                    await handleSendMessage()
                 }}
             >
                 <input
@@ -51,9 +52,9 @@ export const Messages = ({
                 <button type="submit">Send</button>
             </form>
             <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                     e.preventDefault()
-                    handleJoinRoom()
+                    await handleJoinRoom()
                 }}
             >
                 <input
